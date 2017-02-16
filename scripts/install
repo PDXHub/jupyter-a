@@ -1,0 +1,16 @@
+#!/bin/bash -eux
+
+if [ -z "$NOTEBOOK_IMAGE" ]; then
+	echo "Enter the image variant that you want to use you want to use, such as jupyter/minimal-notebook"
+	echo "(see https://github.com/jupyter/docker-stacks/ for a list of variants):"
+	read NOTEBOOK_IMAGE
+fi
+if [ -z "$PASSWORD" ]; then
+	echo "Enter the password you want to use to secure your notebook:"
+	read PASSWORD
+fi
+
+NOTEBOOK_PASSWORD_HASH=$(docker run --rm jupyter/base-notebook /opt/conda/bin/python -c "from IPython.lib import passwd ; print(passwd('${PASSWORD}'))")
+
+echo "NOTEBOOK_IMAGE=${NOTEBOOK_IMAGE}" > env
+echo "NOTEBOOK_PASSWORD_HASH=${NOTEBOOK_PASSWORD_HASH}" >> env

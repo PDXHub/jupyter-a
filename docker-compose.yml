@@ -6,7 +6,8 @@ networks:
     driver: bridge
 services:
   app:
-    image: jupyter/datascience-notebook
+    image: ${NOTEBOOK_IMAGE}
+    command: start-notebook.sh --NotebookApp.password='${NOTEBOOK_PASSWORD_HASH}'
     volumes:
       - ./data:/home/jovyan/work
     networks:

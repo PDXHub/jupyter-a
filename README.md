@@ -12,3 +12,12 @@ It will prompt you for an image variant and a password, or you can specify them 
 
     sudo NOTEBOOK_IMAGE=jupyter/minimal-notebook PASSWORD=changeme /bin/sh ./scripts/install
 
+### On Libre.sh
+
+On Libre.sh, you can provision a new domain with this app with the following one liner:
+
+```
+sudo libre provision -a "github.com/PDXHub/jupyter-a" -u your.domain.name -s
+```
+
+You can also put env vars on the command line after `sudo` as above.
